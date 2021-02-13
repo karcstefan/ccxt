@@ -132,6 +132,7 @@ const exchanges = {
     'lakebtc':                 require ('./js/lakebtc.js'),
     'latoken':                 require ('./js/latoken.js'),
     'lbank':                   require ('./js/lbank.js'),
+    'litebit':                 require ('./js/litebit.js'),
     'liquid':                  require ('./js/liquid.js'),
     'luno':                    require ('./js/luno.js'),
     'lykke':                   require ('./js/lykke.js'),
@@ -165,7 +166,7 @@ const exchanges = {
     'xena':                    require ('./js/xena.js'),
     'yobit':                   require ('./js/yobit.js'),
     'zaif':                    require ('./js/zaif.js'),
-    'zb':                      require ('./js/zb.js'),    
+    'zb':                      require ('./js/zb.js'),
 }
 
 //-----------------------------------------------------------------------------
