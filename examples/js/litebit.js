@@ -7,6 +7,7 @@ const ccxt         = require ('../../ccxt.js')
 // ----------------------------------------------------------------------------
 
 ;(async function main () {
+  process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
   const exchange = new ccxt.litebit ({
     'apiKey': 'YOUR_API_KEY',
@@ -15,9 +16,10 @@ const ccxt         = require ('../../ccxt.js')
 
   // const currencies = await exchange.fetchCurrencies ();
   // const markets = await exchange.loadMarkets ();
-  const orderBook = await exchange.fetchOrderBook ('NLG-EUR');
+  // const orderBook = await exchange.fetchOrderBook ('NLG-EUR');
   // console.log(markets);
   // console.log(currencies);
-  console.log(orderBook);
+  const balance = await exchange.fetchBalance('BTC');
+  console.log(balance);
 
 }) ();
