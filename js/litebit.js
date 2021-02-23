@@ -140,7 +140,7 @@ module.exports = class litebit extends Exchange {
         if (api === 'private') {
             headers = {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzNiMDBjMTAxYjU2MzQ3ZjMxNTk2YzJmMjkyMjcwMmM3MzY5NGRjNWJjYmNhMjUzOWRlZWNmZjRhODE2NWRjOThiMTkyZjhkYTJjNjc0Y2IiLCJpYXQiOiIxNjEzNzQ5OTQxLjIzNzQyNyIsIm5iZiI6IjE2MTM3NDk5NDEuMjM3NDMyIiwiZXhwIjoiNDc2OTQyMzU0MS4xOTA1MDQiLCJzdWIiOiIzIiwic2NvcGVzIjpbInVzZXIucmVhZCIsInVzZXIudXBkYXRlIiwibm90aWZpY2F0aW9uLWZpbHRlci5hbGwiLCJub3RpZmljYXRpb24tZmlsdGVyLmRlbGV0ZSIsIm5vdGlmaWNhdGlvbi1maWx0ZXIudXBkYXRlIiwibm90aWZpY2F0aW9uLWZpbHRlci5jcmVhdGUiLCJub3RpZmljYXRpb24tZmlsdGVyLnJlYWQiLCJ0cmFkZS1vcmRlci5hbGwiLCJ0cmFkZS1vcmRlci5kZWxldGUiLCJ0cmFkZS1vcmRlci5jcmVhdGUiLCJ0cmFkZS1vcmRlci5yZWFkIiwiYmFsYW5jZS5hbGwiLCJiYWxhbmNlLmNyZWF0ZSIsImJhbGFuY2UucmVhZCIsImZlZS5hbGwiLCJmZWUucmVhZCIsInVzZXIuYWxsIiwidXNlci5kZWxldGUiXX0.cXZZeVdt1Z95cW6le5-vj5rjuCL5F79HwoILhWZkNNLL-ANv1qbnutjFKMb9QgOSqtz0CDayPuMO6yJYIDBqYNfbnRPMxs8g3PxZ2J2bOijodkXQxQ2-Vp706L99DEh8moRCXVBASSz50fsIk6uyDR2cJymLjgC2VH531MLL3RwxqJKaDWP2o9fpsPKg9PHzhAQqGlyqfmwzMTf-5iF7AtqwfCmDlZlv06BnREAo0RjssBhsAxWWR7MIM8jxZU9rx9d4y_f-NrIZObPaaND8a0bBAhRcmqf1yitv2kZyrNGNEfi1DqiR4SwIW9KBHSbfL-B9fWImaPP-gS3HQ39CSmTDRKSXUSDHoB1iVSyo3zEEvrF5IZFHRiAXXtSlmTadFHEG0kKUoz03Qfa2vc5frvUlotONU6JldpFBE228rZuutEcAfO70KO_tmZjcAg9oGnwSAQuKNmcgm0xNRz5bX9IQTw1RAi0pjo5vfrYdk0Xc9aBSEDG9setkc2_qlBVrO__gBvYaKjTbDcenir0OZgn2woHM4Wy_p7i-tLhzSjHp52OBICChr6M-Wfh1ONgtaYUeNLWiUTXDQ0A7zZlQ3-SOAIrGnmJFAi2B9nqQEpyGomZhYIKFvLbkICak6t5gr6ZHoAuhHHYkWFGom13AHKXQ7upPxHlC6oq3ldjiN_0',
+                'Authorization': 'Bearer <token>',
             };
         }
 
