@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------------------
 
-const ccxt         = require ('../../ccxt.js')
+const ccxt = require ('../../ccxt.js')
 
 // ----------------------------------------------------------------------------
 
@@ -19,7 +19,14 @@ const ccxt         = require ('../../ccxt.js')
   // const orderBook = await exchange.fetchOrderBook ('NLG-EUR');
   // console.log(markets);
   // console.log(currencies);
-  const balance = await exchange.fetchBalance();
-  console.log(balance);
+  // const balance = await exchange.fetchBalance();
+
+  const tradeOrder = await exchange.createOrder({
+    'trade-market': 'NLG-EUR',
+    'amount': '1',
+    'side': 'buy',
+    'rate': '0.5',
+  });
+  console.log(tradeOrder);
 
 }) ();
