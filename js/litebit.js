@@ -39,7 +39,10 @@ module.exports = class litebit extends Exchange {
                     ],
                     'post': [
                         'trade-order',
-                    ]
+                    ],
+                    'delete': [
+                        'trade-order/{uuid}',
+                    ],
                 },
             },
         });
@@ -182,6 +185,12 @@ module.exports = class litebit extends Exchange {
             'info': response.data,
             'id': response.data.uuid,
         };
+    }
+
+    async cancelOrder (params = {}) {
+        const request = {'uuid': params.uuid};
+
+        return await this.privateDeleteTradeOrderUuid(request);
     }
 
     sign(path, api = 'public', method = 'GET', params = {}, headers = undefined, body = undefined) {

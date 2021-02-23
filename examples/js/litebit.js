@@ -21,12 +21,17 @@ const ccxt = require ('../../ccxt.js')
   // console.log(currencies);
   // const balance = await exchange.fetchBalance();
 
-  const tradeOrder = await exchange.createOrder({
-    'trade-market': 'NLG-EUR',
-    'amount': '1',
-    'side': 'buy',
-    'rate': '0.5',
-  });
-  console.log(tradeOrder);
+  // const tradeOrder = await exchange.createOrder({
+  //   'trade-market': 'NLG-EUR',
+  //   'amount': '1',
+  //   'side': 'buy',
+  //   'rate': '0.5',
+  // });
+
+
+  const deleteOrder = await exchange.cancelOrder({
+    'uuid': 'f0d3c4fa-1467-4fc4-a6d3-9527c675e699'
+  })
+  console.log(deleteOrder);
 
 }) ();
