@@ -138,17 +138,30 @@ module.exports = class litebit extends Exchange {
     async fetchBalance() {
         const balances = await this.privateGetBalance();
         const free = {};
+        const used = {};
+        const total = {};
 
         for (let i = 0; i < balances.data.length; i++) {
             const balanceData = balances.data[i];
             free[balanceData.available.currency] = balanceData.available.amount;
+            used[balanceData.reserved.currency] = balanceData.reserved.amount;
+            total[balanceData.total.currency] = balanceData.total.amount;
         }
 
         const results = {
             'info': balances.data,
             'free': free,
+            'used': used,
+            'total': total,
         };
 
+        for (const [key, value] of Object.entries(total)) {
+            results[key] = {
+                'free': free[key],
+                'used': used[key],
+                'total': total[key],
+            };
+        }
         return results;
     }
 
