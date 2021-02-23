@@ -19,7 +19,7 @@ const ccxt         = require ('../../ccxt.js')
   // const orderBook = await exchange.fetchOrderBook ('NLG-EUR');
   // console.log(markets);
   // console.log(currencies);
-  const balance = await exchange.fetchBalance('BTC');
+  const balance = await exchange.fetchBalance();
   console.log(balance);
 
 }) ();
