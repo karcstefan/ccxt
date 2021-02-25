@@ -11,7 +11,6 @@ const ccxt = require ('../../ccxt.js')
 
   const exchange = new ccxt.litebit ({
     'apiKey': 'YOUR_API_KEY',
-    'secret': 'YOUR_SECRET',
   });
 
   // const currencies = await exchange.fetchCurrencies ();
