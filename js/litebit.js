@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------------------
 
 const Exchange = require ('./base/Exchange');
+const {AuthenticationError, BadRequest} = require ('./base/errors');
 
 // ---------------------------------------------------------------------------
 
@@ -32,10 +33,10 @@ module.exports = class litebit extends Exchange {
                 'fetchMyTrades': true,
                 'fetchDepositAddress': false,
                 'fetchDeposits': false,
-                'fetchWithdrawals': false,
-                'fetchTransactions': false,
+                'fetchWithdrawals': true,
+                'fetchTransactions': true,
                 'fetchLedger': false,
-                'withdraw': false,
+                'withdraw': true,
                 'transfer': false,
             },
             'version': 'v1',
@@ -43,6 +44,7 @@ module.exports = class litebit extends Exchange {
                 'logo': '',
                 'api': 'https://localhost/api',
                 'www': 'https://localhost/',
+                'appApi': 'https://app-api.liteaccept.nl',
             },
             'api': {
                 'public': {
@@ -51,6 +53,7 @@ module.exports = class litebit extends Exchange {
                         'trade-market/{code}/book',
                         'trade-market/{code}/history',
                         'currency',
+                        'v2/wallets/{code}/transactions'
                     ],
                 },
                 'private': {
@@ -61,12 +64,18 @@ module.exports = class litebit extends Exchange {
                     ],
                     'post': [
                         'trade-order',
+                        'v1/coin-withdraw/withdraw'
                     ],
                     'delete': [
                         'trade-order/{uuid}',
                     ],
                 },
             },
+            'exceptions': {
+                'exact': {
+                    '401': AuthenticationError,
+                }
+            }
         });
     }
 
@@ -213,6 +222,43 @@ module.exports = class litebit extends Exchange {
         return output;
     }
 
+    async fetchTransactions (code = undefined, since = undefined, limit = undefined, params = {}) {
+        const response = await this.privatePostV2WalletsCodeTransactions({
+            code: code,
+        });
+
+        const output = [];
+        for (let i = 0; i < response.data.length; i++) {
+            const transactionData = response.data[i];
+            const timestamp = new Date(transactionData.timestamp);
+            output.push({
+                info: transactionData,
+                id: transactionData.transaction_id,
+                timestamp: timestamp.getTime(),
+                datestamp: transactionData.timestamp,
+                amount: transactionData.amount,
+                type: transactionData.type,
+                status: transactionData.status,
+            })
+        }
+        return output;
+    }
+
+    async withdraw (code, amount, address, tag = undefined, params = {}) {
+        const identifier = tag || (new Date().valueOf());
+        const response = await this.privatePostV1CoinWithdrawWithdraw({
+            code: code,
+            withdraw_amount: amount,
+            receive_address: address,
+            unique_identifier: identifier
+        });
+
+        return {
+            id: response.data.unique_identifier,
+            info: response,
+        }
+    }
+
     transformOrderData (responseData) {
         return {
             'id': responseData.uuid,
@@ -233,12 +279,20 @@ module.exports = class litebit extends Exchange {
     }
 
     sign (path, api = 'public', method = 'GET', params = {}, headers = undefined, body = undefined) {
-        const url = this.urls['api'] + '/' + this.version + '/' + this.implodeParams (path, params);
+        let baseUrl = this.urls['api'];
+        let apiKey = this.urls['api'] + '/' + this.version;
+
+        if(['v1/coin-withdraw/withdraw', 'v2/wallets/{coin_id}/transactions'].includes(path)) {
+            baseUrl = this.urls['appApi'];
+            apiKey = this.appApiKey;
+        }
+
+        const url = baseUrl + '/' + this.implodeParams (path, params);
         const query = this.omit (params, this.extractParams (path));
         headers = headers || {};
         headers.Accept = 'application/json';
         if (api === 'private') {
-            headers.Authorization = 'Bearer ' + this.apiKey;
+            headers.Authorization = 'Bearer ' + apiKey;
         }
         if (method === 'POST') {
             body = this.json (query);

@@ -11,6 +11,7 @@ const ccxt = require ('../../ccxt.js')
 
   const exchange = new ccxt.litebit ({
     'apiKey': 'YOUR_API_KEY',
+    'appApiKey': 'YOUR_API_KEY',
   });
 
   // const currencies = await exchange.fetchCurrencies ();
@@ -28,9 +29,7 @@ const ccxt = require ('../../ccxt.js')
   // });
 
 
-  const deleteOrder = await exchange.cancelOrder({
-    'uuid': 'f0d3c4fa-1467-4fc4-a6d3-9527c675e699'
-  })
-  console.log(deleteOrder);
+  const test= await exchange.withdraw();
+  console.log(test);
 
 }) ();
