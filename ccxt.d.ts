@@ -513,6 +513,7 @@ declare module 'ccxt' {
     export class latoken extends Exchange {}
     export class lbank extends Exchange {}
     export class liquid extends Exchange {}
+    export class litebit extends Exchange {}
     export class luno extends Exchange {}
     export class lykke extends Exchange {}
     export class mercado extends Exchange {}

@@ -133,6 +133,7 @@ const exchanges = {
     'latoken':                 require ('./js/latoken.js'),
     'lbank':                   require ('./js/lbank.js'),
     'liquid':                  require ('./js/liquid.js'),
+    'litebit':                 require ('./js/litebit.js'),
     'luno':                    require ('./js/luno.js'),
     'lykke':                   require ('./js/lykke.js'),
     'mercado':                 require ('./js/mercado.js'),

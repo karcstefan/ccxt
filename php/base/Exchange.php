@@ -153,6 +153,7 @@ class Exchange {
         'latoken',
         'lbank',
         'liquid',
+        'litebit',
         'luno',
         'lykke',
         'mercado',
